@@ -1,0 +1,30 @@
+<script type="text/javascript">
+    RED.nodes.registerType('discovergy-config',{
+        category: 'config',
+        defaults: {
+            name: {value:"",required:true},
+            email: {value:"",required:true},
+            password: {value:"",required:true}
+        },
+        label: function() {
+            return this.name+" ("+this.id+")";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="discovergy-config">
+    <div class="form-row">
+        <label for="node-config-input-name"><i class="fa fa-bookmark"></i> Name (ID)</label>
+        <input type="text" id="node-config-input-name">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-email"><i class="fa fa-bookmark"></i> E-Mail</label>
+        <input type="text" id="node-config-input-email">
+        <p>As used on my.discovergy.com (Portal Login)</p>
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-password"><i class="fa fa-bookmark"></i> Password</label>
+        <input type="password" id="node-config-input-password">
+        <p>As used on my.discovergy.com (Portal Login)</p>
+    </div>
+</script>

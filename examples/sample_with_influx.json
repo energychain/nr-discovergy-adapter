@@ -1,0 +1,140 @@
+[
+    {
+        "id": "0b73a61e12b36517",
+        "type": "tab",
+        "label": "Discovergy-Adapter",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "0631b7f73c8a77aa",
+        "type": "inject",
+        "z": "0b73a61e12b36517",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 80,
+        "wires": [
+            [
+                "1f224467d975a7ef"
+            ]
+        ]
+    },
+    {
+        "id": "523e3c2da978878c",
+        "type": "debug",
+        "z": "0b73a61e12b36517",
+        "name": "Raw Results",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "1f224467d975a7ef",
+        "type": "Last Reading",
+        "z": "0b73a61e12b36517",
+        "name": "",
+        "api": "69cbc19512feb74d",
+        "fiel_names": "",
+        "delay": "",
+        "x": 390,
+        "y": 100,
+        "wires": [
+            [
+                "523e3c2da978878c"
+            ],
+            [
+                "84ecd3a53868338a"
+            ],
+            [
+                "b1f38b35d6eed291"
+            ]
+        ]
+    },
+    {
+        "id": "b1f38b35d6eed291",
+        "type": "delay",
+        "z": "0b73a61e12b36517",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "10",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 410,
+        "y": 180,
+        "wires": [
+            [
+                "1f224467d975a7ef"
+            ]
+        ]
+    },
+    {
+        "id": "84ecd3a53868338a",
+        "type": "influxdb out",
+        "z": "0b73a61e12b36517",
+        "influxdb": "edc73a3f02d26568",
+        "name": "",
+        "measurement": "",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 680,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "69cbc19512feb74d",
+        "type": "discovergy-config",
+        "name": "test"
+    },
+    {
+        "id": "edc73a3f02d26568",
+        "type": "influxdb",
+        "hostname": "localhost",
+        "port": "8086",
+        "protocol": "http",
+        "database": "data",
+        "name": "localhost",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.x",
+        "url": "http://localhost:8086",
+        "rejectUnauthorized": true
+    }
+]
