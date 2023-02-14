@@ -57,10 +57,12 @@ module.exports = function(RED) {
                         influxpayload.reading_time = rq.data.time;
 
                         rq.data.meter = node.meters[i];
+                        const meter = node.meters[i];
+                        meter.last_reading = influxpayload;
                          node.send([{payload:rq.data},{
                             measurement:node.meters[i].serialNumber,
                             payload:[influxpayload]
-                         },null]);
+                         },{payload:meter,query:{"serialNumber":meter.serialNumber}},null]);
                     } catch(e) {
                         node.status({ fill: "red", shape: "dot", text: "Error getting Reading "+e});
                         node.error("Error getting Reading");
@@ -69,7 +71,7 @@ module.exports = function(RED) {
                     }
                 }
             
-                node.send([null,null,{payload:new Date().getTime()}]);
+                node.send([null,null,null,{payload:new Date().getTime()}]);
                 node.status({ fill: "green", shape: "dot", text: ""});
            } else {
                 node.status({ fill: "red", shape: "dot", text: "Invalid Meter List"});
