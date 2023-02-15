@@ -7,6 +7,15 @@ module.exports = function(RED) {
         node.api = RED.nodes.getNode(config.api);
         node.meters = null;
         node.on('input', async function(msg) {
+            if((typeof msg.payload.from == 'undefined')||(msg.payload.from == null)||(isNaN(msg.payload.from))) {
+                node.status({ fill: "red", shape: "dot", text: "Missing from in msg.payload"});
+                return;
+            } 
+            let from = msg.payload.from;
+            let to = msg.payload.from + 3600000;
+            if((typeof msg.payload.to !== 'undefined')&&(!isNaN(msg.payload.to))) {
+                to = msg.payload.to;
+            }
            // Get list of all meterIDs
            if(node.meters == null) {
             try {
@@ -59,19 +68,20 @@ module.exports = function(RED) {
                                 node.meters[i].field_names = rq.data.join(',');
                             }
                         }
-                        const rq = await axios.get("https://api.discovergy.com/public/v1/last_reading?meterId="+node.meters[i].meterId+"&fields="+node.meters[i].field_names,{
+
+                        const rq = await axios.get("https://api.discovergy.com/public/v1/readings?from="+from+"&to="+to+"&meterId="+node.meters[i].meterId+"&fields="+node.meters[i].field_names,{
                                     auth: {
                                         username: node.api.config.username,
                                         password: node.api.config.password
                                     }
                         });
                         await new Promise(r => setTimeout(r, SLEEP_TIME));
+                        rq.data = rq.data[0];
                         let influxpayload = rq.data.values;
                         influxpayload.reading_time = rq.data.time;
 
                         rq.data.meter = node.meters[i];
                         const meter = node.meters[i];
-                        meter.last_reading = influxpayload;
                          node.send([{payload:rq.data},{
                             measurement:node.meters[i].serialNumber,
                             payload:[influxpayload]
@@ -91,5 +101,5 @@ module.exports = function(RED) {
            }
         });
     }
-    RED.nodes.registerType("Last Reading",Reader);
+    RED.nodes.registerType("Historic Reading",Reader);
 }

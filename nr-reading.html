@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    RED.nodes.registerType('Last Reading',{
+    RED.nodes.registerType('Historic Reading',{
         category: 'Discovergy',
         color: '#a0d0a0',
         defaults: {
@@ -11,15 +11,15 @@
         },
         inputs:1,
         outputs:4,
-        outputLabels:['Last Readings (Raw)','Influx Measurement Format','MongoDB Asset Format','Trigger for next'], 
+        outputLabels:['Last Readings (Raw)','Influx Measurement Format','MongoDB Asset Format'], 
         icon: "font-awesome/fa-eye",
         label: function() {
-            return this.name||"Last Reading";
+            return this.name||"Historic Reading";
         }
     });
 </script>
 
-<script type="text/html" data-template-name="Last Reading">
+<script type="text/html" data-template-name="Historic Reading">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -42,6 +42,6 @@
     </div>
 </script>
 
-<script type="text/html" data-help-name="Last Reading">
+<script type="text/html" data-help-name="Historic Reading">
     <p>msg.payload will be send as push message</p>
 </script>

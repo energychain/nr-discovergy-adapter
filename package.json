@@ -1,6 +1,6 @@
 {
   "name": "nr-discovergy-adapter",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Node-RED Adapter for Discovergy Meters",
   "main": "index.js",
   "scripts": {
@@ -31,7 +31,8 @@
     "version": ">=2.0.0",
     "nodes": {
       "discovergy-config": "discovergy-config.js",
-      "Last Reading": "nr-latest.js"
+      "Last Reading": "nr-latest.js",
+      "Historic Reading": "nr-reading.js"
     }
   }
 }
