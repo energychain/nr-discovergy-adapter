@@ -2,8 +2,7 @@ module.exports = function(RED) {
 
     function APIConfiguration(n) {
             RED.nodes.createNode(this,n);
-            this.username = n.email;
-            this.password = n.password;
+            this.config = n;
     }   
     RED.nodes.registerType("discovergy-api",APIConfiguration);
 }
