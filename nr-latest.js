@@ -12,8 +12,8 @@ module.exports = function(RED) {
             try {
                 const rq = await axios.get("https://api.discovergy.com/public/v1/meters",{
                     auth: {
-                        username: node.api.config.username,
-                        password: node.api.config.password
+                        username: node.api.username,
+                        password: node.api.password
                     }
                 });
                 if((typeof config.meters !== 'undefined') && (config.meters !== null) && (config.meters.length >0)) {

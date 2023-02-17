@@ -71,8 +71,8 @@ module.exports = function(RED) {
 
                         const rq = await axios.get("https://api.discovergy.com/public/v1/readings?from="+from+"&to="+to+"&meterId="+node.meters[i].meterId+"&fields="+node.meters[i].field_names,{
                                     auth: {
-                                        username: node.api.config.username,
-                                        password: node.api.config.password
+                                        username: node.api.username,
+                                        password: node.api.password
                                     }
                         });
                         await new Promise(r => setTimeout(r, SLEEP_TIME));
