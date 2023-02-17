@@ -12,8 +12,8 @@ module.exports = function(RED) {
             try {
                 const rq = await axios.get("https://api.discovergy.com/public/v1/meters",{
                     auth: {
-                        username: node.api.username,
-                        password: node.api.password
+                        username: node.api.config.username,
+                        password: node.api.config.password
                     }
                 });
                 if((typeof config.meters !== 'undefined') && (config.meters !== null) && (config.meters.length >0)) {
@@ -49,8 +49,8 @@ module.exports = function(RED) {
                             } else { 
                                 const rq = await axios.get("https://api.discovergy.com/public/v1/field_names?meterId="+node.meters[i].meterId,{
                                     auth: {
-                                        username: node.api.username,
-                                        password: node.api.password
+                                        username: node.api.config.username,
+                                        password: node.api.config.password
                                     }
                                 });
                                 await new Promise(r => setTimeout(r, SLEEP_TIME));
@@ -61,8 +61,8 @@ module.exports = function(RED) {
                         }
                         const rq = await axios.get("https://api.discovergy.com/public/v1/last_reading?meterId="+node.meters[i].meterId+"&fields="+node.meters[i].field_names,{
                                     auth: {
-                                        username: node.api.username,
-                                        password: node.api.password
+                                        username: node.api.config.username,
+                                        password: node.api.config.password
                                     }
                         });
                         await new Promise(r => setTimeout(r, SLEEP_TIME));
