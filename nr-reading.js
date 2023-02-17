@@ -58,8 +58,8 @@ module.exports = function(RED) {
                             } else { 
                                 const rq = await axios.get("https://api.discovergy.com/public/v1/field_names?meterId="+node.meters[i].meterId,{
                                     auth: {
-                                        username: node.api.config.username,
-                                        password: node.api.config.password
+                                        username: node.api.username,
+                                        password: node.api.password
                                     }
                                 });
                                 await new Promise(r => setTimeout(r, SLEEP_TIME));
