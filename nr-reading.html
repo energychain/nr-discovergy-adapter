@@ -4,7 +4,7 @@
         color: '#a0d0a0',
         defaults: {
             name: {value:""},
-            api: {required:true,type:"discovergy-config"},
+            api: {required:true,type:"discovergy-api"},
             field_names: {value:""},
             delay: {value:0,type:"number"},
             meters: {type:"string"}
@@ -25,7 +25,7 @@
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
     <div class="form-row">
-        <label for="node-input-api"><i class="fa fa-tag"></i> Discovergy Account</label>
+        <label for="node-input-api"><i class="fa fa-user-circle"></i> Discovergy Account</label>
         <input type="text" id="node-input-api" placeholder="Name">
     </div>
     <div class="form-row">
@@ -33,11 +33,11 @@
         <input type="text" id="node-input-meters" placeholder="(Comma seperated list of IDs or Serial Numbers)">
     </div>
     <div class="form-row">
-        <label for="node-input-field_names"><i class="fa fa-tag"></i> Field Names</label>
+        <label for="node-input-field_names"><i class="fa fa-code"></i> Field Names</label>
         <input type="text" id="node-input-field_names" placeholder="(optional)">
     </div>
     <div class="form-row">
-        <label for="node-input-delay"><i class="fa fa-tag"></i> Call Delay</label>
+        <label for="node-input-delay"><i class="fa fa-clock-o"></i> Call Delay</label>
         <input type="number" id="node-input-delay" placeholder="(ms to wait between API calls)">
     </div>
 </script>

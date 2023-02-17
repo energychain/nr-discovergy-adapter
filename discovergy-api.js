@@ -13,5 +13,5 @@ module.exports = function(RED) {
             this.baseDir = this.baseDir + "/EnergyProfiles";
             RED.nodes.createNode(this,n);
     }   
-    RED.nodes.registerType("discovergy-config",APIConfiguration);
+    RED.nodes.registerType("discovergy-api",APIConfiguration);
 }
